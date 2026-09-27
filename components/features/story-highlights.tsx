@@ -5,7 +5,7 @@ import {
   IconUsers,
   IconTools,
   IconReceipt2,
-  IconPalmTree,
+  IconBeach,
   IconCampfire,
   IconSailboat,
 } from '@tabler/icons-react';
@@ -21,7 +21,7 @@ const stories: StoryItem[] = [
   { id: '1', label: 'Customer', targetId: '#layanan', icon: IconUsers },
   { id: '2', label: 'Rental / Sewa', targetId: '#rental', icon: IconTools },
   { id: '3', label: 'Info Pricelist', targetId: '#layanan', icon: IconReceipt2 },
-  { id: '4', label: 'Pulau Pisang', targetId: '#layanan', icon: IconPalmTree },
+  { id: '4', label: 'Pulau Pisang', targetId: '#layanan', icon: IconBeach },
   { id: '5', label: 'SIRANDAH', targetId: '#boat', icon: IconCampfire },
   { id: '6', label: 'Mandeh', targetId: '#boat', icon: IconSailboat },
 ];
