@@ -1,69 +1,127 @@
-import Image from "next/image";
+import { createClient } from '@/lib/supabase/server';
+import { Package, RentalItem, SiteSettings } from '@/types';
+import { AnnouncementBar } from '@/components/layout/announcement-bar';
+import { Navbar } from '@/components/layout/navbar';
+import { HeroSection } from '@/components/features/hero-section';
+import { StoryHighlights } from '@/components/features/story-highlights';
+import { ServiceTabs } from '@/components/features/service-tabs';
+import { RentalGrid } from '@/components/features/rental-grid';
+import { BoatCharter } from '@/components/features/boat-charter';
+import { MapsSection } from '@/components/features/maps-section';
+import { Footer } from '@/components/layout/footer';
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const supabase = await createClient();
+
+  const [
+    { data: packagesData },
+    { data: rentalsData },
+    { data: settingsData },
+  ] = await Promise.all([
+    supabase.from('packages').select('*').eq('is_active', true).order('sort_order', { ascending: true }),
+    supabase.from('rentals').select('*').eq('is_active', true).order('sort_order', { ascending: true }),
+    supabase.from('site_settings').select('*').eq('id', 1).single(),
+  ]);
+
+  const packages: Package[] = packagesData || [];
+  const rentals: RentalItem[] = rentalsData || [];
+  const settings: SiteSettings = settingsData || {
+    id: 1,
+    business_name: 'Teman Mancing Padang',
+    tagline: 'Bukan sekadar menemani, tapi menjadi partner terbaik di setiap tarikan.',
+    tagline_en: 'More than a companion, your reliable fishing partner on every strike.',
+    hero_title: 'Jasa Temanin Mancing & Rental Alat Pertama di Padang',
+    hero_title_en: 'First Fishing Buddy & Tackle Rental in Padang',
+    hero_subtitle: 'Nikmati serunya mancing di Padang tanpa ribet bawa alat. Dari bimbingan pemula dari nol hingga carter perahu wisata keliling pulau.',
+    hero_subtitle_en: 'Enjoy easy fishing trips and island boat charters in Padang. Friendly local guides for beginners, complete gear, and authentic coastal trips.',
+    whatsapp_number: '6289635655962',
+    operating_hours: 'Setiap Hari 07:00 - 23:30 WIB',
+    address: 'Jl. Kp. Batu, Jembatan Sitinurbaya, Padang',
+    google_maps_url: 'https://maps.app.goo.gl/Padang',
+    google_maps_iframe: null,
+    instagram_username: 'temanmancingpadang',
+    tiktok_username: 'temanmancingpadang',
+    announcement_banner: 'Buka setiap hari 07:00 - 23:30 WIB | Diskon khusus mahasiswa/i yang pusing skripsi!',
+    announcement_banner_en: 'Open daily 07:00 - 23:30 WIB | Special discounts for university students!',
+    is_announcement_active: true,
+    rental_terms: [
+      'Setiap kerusakan atau kehilangan adalah tanggung jawab penyewa.',
+      'Wajib deposit jaminan untuk mencegah kehilangan barang.',
+      'Syarat wajib KTP, SIM, atau kartu identitas lainnya.',
+      'Diskon spesial untuk mahasiswa/i yang lagi pusing skripsi!',
+    ],
+    boat_terms: [
+      'Wajib menggunakan pelampung keselamatan (Life Jacket) selama penyeberangan.',
+      'Jadwal keberangkatan fleksibel mengikuti kondisi cuaca laut.',
+      'Rombongan bebas membawa makanan & perlengkapan sendiri.',
+    ],
+    updated_at: new Date().toISOString(),
+  };
+
+  const boatPackages = packages.filter((p) => p.category === 'boat-wisata');
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="flex min-h-screen flex-col">
+      <AnnouncementBar
+        bannerId={settings.announcement_banner}
+        bannerEn={settings.announcement_banner_en}
+        isActive={settings.is_announcement_active}
+      />
+
+      <Navbar
+        businessName={settings.business_name}
+        whatsappNumber={settings.whatsapp_number}
+        operatingHours={settings.operating_hours}
+      />
+
+      <main className="flex-1">
+        <HeroSection
+          heroTitleId={settings.hero_title}
+          heroTitleEn={settings.hero_title_en}
+          heroSubtitleId={settings.hero_subtitle}
+          heroSubtitleEn={settings.hero_subtitle_en}
+          whatsappNumber={settings.whatsapp_number}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        <StoryHighlights />
+
+        <ServiceTabs
+          packages={packages}
+          whatsappNumber={settings.whatsapp_number}
+        />
+
+        <RentalGrid
+          rentals={rentals}
+          whatsappNumber={settings.whatsapp_number}
+          rentalTerms={settings.rental_terms}
+        />
+
+        <BoatCharter
+          boatPackages={boatPackages}
+          whatsappNumber={settings.whatsapp_number}
+          boatTerms={settings.boat_terms}
+        />
+
+        <MapsSection
+          address={settings.address}
+          operatingHours={settings.operating_hours}
+          googleMapsUrl={settings.google_maps_url}
+          googleMapsIframe={settings.google_maps_iframe}
+        />
       </main>
+
+      <Footer
+        businessName={settings.business_name}
+        tagline={settings.tagline}
+        taglineEn={settings.tagline_en}
+        address={settings.address}
+        operatingHours={settings.operating_hours}
+        whatsappNumber={settings.whatsapp_number}
+        instagramUsername={settings.instagram_username}
+        tiktokUsername={settings.tiktok_username}
+      />
     </div>
   );
 }
