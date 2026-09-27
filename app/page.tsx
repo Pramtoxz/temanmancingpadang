@@ -9,6 +9,7 @@ import { RentalGrid } from '@/components/features/rental-grid';
 import { BoatCharter } from '@/components/features/boat-charter';
 import { MapsSection } from '@/components/features/maps-section';
 import { Footer } from '@/components/layout/footer';
+import { FloatingWhatsApp } from '@/components/layout/floating-whatsapp';
 
 export const revalidate = 60;
 
@@ -122,6 +123,8 @@ export default async function HomePage() {
         instagramUsername={settings.instagram_username}
         tiktokUsername={settings.tiktok_username}
       />
+
+      <FloatingWhatsApp whatsappNumber={settings.whatsapp_number} />
     </div>
   );
 }
