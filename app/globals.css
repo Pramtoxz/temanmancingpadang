@@ -3,27 +3,35 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #f3f9fb;
+  --foreground: #02161e;
   --card: #ffffff;
-  --card-foreground: #0f172a;
-  --primary: #0284c7;
+  --card-foreground: #02161e;
+  --primary: #0099a8;
   --primary-foreground: #ffffff;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --border: #e2e8f0;
+  --muted: #e3f2f5;
+  --muted-foreground: #40606b;
+  --border: #c8e3e7;
+  --brand-deep: #02161e;
+  --brand-navy: #062a36;
+  --brand-cyan: #00d2df;
+  --brand-glow: #00f0ff;
 }
 
 .dark {
-  --background: #06111f;
-  --foreground: #f1f5f9;
-  --card: #0b1a2e;
-  --card-foreground: #f8fafc;
-  --primary: #38bdf8;
-  --primary-foreground: #082f49;
-  --muted: #0f233d;
-  --muted-foreground: #94a3b8;
-  --border: #1a3454;
+  --background: #02161e;
+  --foreground: #ecf8fa;
+  --card: #062a36;
+  --card-foreground: #ffffff;
+  --primary: #00d2df;
+  --primary-foreground: #02161e;
+  --muted: #0a3a4a;
+  --muted-foreground: #8cb8c6;
+  --border: rgba(0, 210, 223, 0.18);
+  --brand-deep: #02161e;
+  --brand-navy: #062a36;
+  --brand-cyan: #00d2df;
+  --brand-glow: #00f0ff;
 }
 
 html {

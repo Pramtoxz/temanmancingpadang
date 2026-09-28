@@ -6,15 +6,11 @@ import { useLanguage } from '@/components/providers/language-provider';
 import { formatRupiah } from '@/lib/formatters';
 import { buildRentalWhatsAppUrl } from '@/lib/whatsapp';
 import {
-  IconTools,
-  IconCheck,
   IconBrandWhatsapp,
   IconShieldCheck,
   IconInfoCircle,
 } from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
 
 interface RentalGridProps {
   rentals: RentalItem[];
@@ -30,22 +26,21 @@ export function RentalGrid({
   const { language, dict } = useLanguage();
 
   return (
-    <section id="rental" className="py-16 sm:py-20 lg:py-24">
+    <section id="rental" className="py-16 sm:py-24 bg-[#02161e] text-white border-b border-cyan-950/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-12">
-          <Badge variant="default" className="mb-3 gap-1.5 py-1 px-3">
-            <IconTools size={14} />
-            <span>{dict.rental.badge}</span>
-          </Badge>
-          <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+          <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#00d2df] block mb-2">
+            {dict.rental.badge}
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
             {dict.rental.heading}
           </h2>
-          <p className="mt-3 max-w-2xl text-sm sm:text-base text-slate-600 dark:text-slate-400">
+          <p className="max-w-2xl text-xs sm:text-sm text-cyan-100/75 leading-relaxed">
             {dict.rental.subheading}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {rentals.map((rental) => {
             const name =
               language === 'en' && rental.name_en ? rental.name_en : rental.name;
@@ -56,71 +51,84 @@ export function RentalGrid({
             const unit =
               language === 'en' && rental.price_unit_en
                 ? rental.price_unit_en
-                : rental.price_unit || 'per jam';
+                : rental.price_unit || 'per hari';
             const waUrl = buildRentalWhatsAppUrl(whatsappNumber, rental, language);
 
             return (
-              <Card
+              <div
                 key={rental.id}
-                className="flex flex-col justify-between transition-all hover:border-sky-300 dark:hover:border-sky-800"
+                className="flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan-500/20 bg-[#062a36]/80 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(0,210,223,0.15)]"
               >
-                <CardHeader className="space-y-2 pb-3">
-                  <div className="flex items-center justify-between">
-                    <Badge variant={rental.in_stock ? 'success' : 'secondary'}>
-                      {rental.in_stock ? dict.rental.available : dict.rental.outOfStock}
-                    </Badge>
-                    <IconTools size={18} className="text-slate-400" />
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="rounded-full bg-cyan-500/20 px-3 py-1 text-[11px] font-bold text-[#00d2df] uppercase tracking-wider">
+                      {rental.category}
+                    </span>
+                    <span
+                      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-bold ${
+                        rental.in_stock
+                          ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                          : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
+                      }`}
+                    >
+                      <span className={`h-1.5 w-1.5 rounded-full ${rental.in_stock ? 'bg-emerald-400' : 'bg-rose-400'}`} />
+                      <span>{rental.in_stock ? dict.rental.available : dict.rental.outOfStock}</span>
+                    </span>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-snug">
+
+                  <h3 className="text-base font-bold text-white mb-2 leading-snug">
                     {name}
                   </h3>
-                  {description && (
-                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                      {description}
-                    </p>
-                  )}
-                </CardHeader>
 
-                <CardContent className="pt-0 pb-4">
-                  <div className="flex items-baseline gap-1 rounded-xl bg-slate-50 p-3 dark:bg-slate-800/50">
-                    <span className="text-xl font-extrabold text-sky-600 dark:text-sky-400">
-                      {formatRupiah(rental.price_per_day)}
+                  <p className="text-xs text-cyan-100/70 leading-relaxed mb-5 line-clamp-2">
+                    {description}
+                  </p>
+
+                  <div className="rounded-2xl bg-[#02161e]/70 border border-cyan-500/20 p-3 mb-2">
+                    <span className="text-[11px] font-semibold text-cyan-300/80 block uppercase">
+                      {dict.packageCard.startingFrom}
                     </span>
-                    <span className="text-xs text-slate-500 dark:text-slate-400">
-                      / {unit}
-                    </span>
+                    <div className="flex items-baseline gap-1 mt-0.5">
+                      <span className="text-lg font-black text-[#00d2df]">
+                        {formatRupiah(rental.price_per_day)}
+                      </span>
+                      <span className="text-xs text-cyan-200/70">
+                        / {unit}
+                      </span>
+                    </div>
                   </div>
-                </CardContent>
+                </div>
 
-                <CardFooter className="pt-0">
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full gap-2 text-xs font-bold border-slate-300 hover:bg-sky-50 hover:text-sky-700 hover:border-sky-300 dark:border-slate-700 dark:hover:bg-slate-800"
-                  >
-                    <a href={waUrl} target="_blank" rel="noopener noreferrer">
-                      <IconBrandWhatsapp size={16} stroke={2} className="text-emerald-500" />
+                <div className="p-6 pt-0">
+                  <Button asChild variant="cyan" size="pill" className="w-full justify-center text-xs">
+                    <a
+                      href={waUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="gap-2 font-bold"
+                    >
+                      <IconBrandWhatsapp size={16} stroke={2.5} />
                       <span>{dict.rental.rentViaWa}</span>
                     </a>
                   </Button>
-                </CardFooter>
-              </Card>
+                </div>
+              </div>
             );
           })}
         </div>
 
         {rentalTerms && rentalTerms.length > 0 && (
-          <div className="mt-12 rounded-2xl border border-sky-100 bg-sky-50/60 p-6 dark:border-sky-900/50 dark:bg-sky-950/30">
-            <div className="flex items-center gap-2 mb-4">
-              <IconShieldCheck size={20} className="text-sky-600 dark:text-sky-400" />
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+          <div className="rounded-3xl border border-cyan-500/20 bg-[#062a36]/60 p-6 sm:p-8 backdrop-blur-sm">
+            <div className="flex items-center gap-2 mb-4 text-[#00d2df]">
+              <IconShieldCheck size={20} stroke={2} />
+              <h3 className="text-sm font-bold uppercase tracking-wider text-white">
                 {dict.rental.termsHeading}
               </h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-              {rentalTerms.map((term, i) => (
-                <div key={i} className="flex items-start gap-2.5">
-                  <IconInfoCircle size={16} className="text-sky-500 shrink-0 mt-0.5" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {rentalTerms.map((term, idx) => (
+                <div key={idx} className="flex items-start gap-2.5 text-xs text-cyan-100/80">
+                  <IconInfoCircle size={15} className="text-[#00d2df] mt-0.5 shrink-0" />
                   <span>{term}</span>
                 </div>
               ))}

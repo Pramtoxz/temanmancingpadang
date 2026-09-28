@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { useLanguage } from '@/components/providers/language-provider';
 import {
-  IconAnchor,
   IconMapPin,
   IconClock,
   IconBrandWhatsapp,
@@ -40,46 +39,46 @@ export function Footer({
   const sanitizedWa = sanitizePhoneNumber(whatsappNumber);
 
   return (
-    <footer className="border-t border-slate-200/80 bg-slate-900 text-slate-300 dark:border-slate-800/80 dark:bg-slate-950">
+    <footer className="border-t border-cyan-950/80 bg-[#011117] text-cyan-100/70">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
           <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-500 text-slate-950">
-                <IconAnchor size={22} stroke={2.2} />
-              </div>
-              <span className="text-xl font-extrabold tracking-tight text-white">
-                {businessName}
-              </span>
-            </div>
-            <p className="text-sm italic text-sky-400">
+            <img
+              src="/images/logo-lockup.png"
+              alt={businessName}
+              className="h-10 w-auto object-contain drop-shadow-[0_2px_12px_rgba(0,210,223,0.3)]"
+            />
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#00d2df]">
+              LEBIH DARI SEKADAR MANCING
+            </p>
+            <p className="text-xs italic text-cyan-200/80">
               &ldquo;{activeTagline}&rdquo;
             </p>
-            <p className="text-sm leading-relaxed text-slate-400 max-w-sm">
+            <p className="text-xs leading-relaxed text-cyan-100/60 max-w-sm">
               {dict.footer.description}
             </p>
           </div>
 
           <div className="md:col-span-4 space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-white">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
               {dict.footer.contactTitle}
             </h4>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-3 text-slate-400">
-                <IconMapPin size={18} className="shrink-0 text-sky-400 mt-0.5" />
+            <ul className="space-y-3 text-xs">
+              <li className="flex items-start gap-3 text-cyan-100/70">
+                <IconMapPin size={17} className="shrink-0 text-[#00d2df] mt-0.5" />
                 <span>{address}</span>
               </li>
-              <li className="flex items-center gap-3 text-slate-400">
-                <IconClock size={18} className="shrink-0 text-sky-400" />
+              <li className="flex items-center gap-3 text-cyan-100/70">
+                <IconClock size={17} className="shrink-0 text-[#00d2df]" />
                 <span>{operatingHours}</span>
               </li>
               <li className="flex items-center gap-3">
-                <IconBrandWhatsapp size={18} className="shrink-0 text-emerald-400" />
+                <IconBrandWhatsapp size={17} className="shrink-0 text-emerald-400" />
                 <a
                   href={`https://wa.me/${sanitizedWa}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-slate-300 hover:text-white transition-colors"
+                  className="font-medium text-cyan-200 hover:text-white transition-colors"
                 >
                   +{sanitizedWa}
                 </a>
@@ -88,7 +87,7 @@ export function Footer({
           </div>
 
           <div className="md:col-span-3 space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-white">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
               {dict.footer.socialTitle}
             </h4>
             <div className="flex flex-col space-y-2.5">
@@ -97,9 +96,9 @@ export function Footer({
                   href={`https://instagram.com/${instagramUsername}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 text-xs text-cyan-100/70 hover:text-white transition-colors"
                 >
-                  <IconBrandInstagram size={18} className="text-pink-400" />
+                  <IconBrandInstagram size={17} className="text-pink-400" />
                   <span>@{instagramUsername}</span>
                 </a>
               )}
@@ -108,9 +107,9 @@ export function Footer({
                   href={`https://tiktok.com/@${tiktokUsername}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 text-xs text-cyan-100/70 hover:text-white transition-colors"
                 >
-                  <IconBrandTiktok size={18} className="text-sky-300" />
+                  <IconBrandTiktok size={17} className="text-[#00d2df]" />
                   <span>@{tiktokUsername}</span>
                 </a>
               )}
@@ -118,10 +117,19 @@ export function Footer({
           </div>
         </div>
 
-        <div className="mt-12 border-t border-slate-800 pt-8 text-center text-xs text-slate-500">
+        <div className="mt-12 border-t border-cyan-950/60 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-cyan-300/50 gap-4">
           <p>
-            &copy; {currentYear} {dict.footer.copyright}
+            &copy; {currentYear} {businessName}. {dict.footer.copyright}
           </p>
+          <div className="flex items-center gap-2 font-medium tracking-wider text-[11px]">
+            <span>MANCING</span>
+            <span>•</span>
+            <span>SILATURAHMI</span>
+            <span>•</span>
+            <span>PELUANG</span>
+            <span>•</span>
+            <span>EST. 2026</span>
+          </div>
         </div>
       </div>
     </footer>

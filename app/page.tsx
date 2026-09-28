@@ -3,7 +3,10 @@ import { Package, RentalItem, SiteSettings } from '@/types';
 import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { Navbar } from '@/components/layout/navbar';
 import { HeroSection } from '@/components/features/hero-section';
-import { StoryHighlights } from '@/components/features/story-highlights';
+import { TargetSpecies } from '@/components/features/target-species';
+import { TrustedExperts } from '@/components/features/trusted-experts';
+import { WhoItsFor } from '@/components/features/who-its-for';
+import { TheExperience } from '@/components/features/the-experience';
 import { ServiceTabs } from '@/components/features/service-tabs';
 import { RentalGrid } from '@/components/features/rental-grid';
 import { BoatCharter } from '@/components/features/boat-charter';
@@ -31,12 +34,12 @@ export default async function HomePage() {
   const settings: SiteSettings = settingsData || {
     id: 1,
     business_name: 'Teman Mancing Padang',
-    tagline: 'Bukan sekadar menemani, tapi menjadi partner terbaik di setiap tarikan.',
-    tagline_en: 'More than a companion, your reliable fishing partner on every strike.',
+    tagline: 'Lebih dari sekadar mancing, partner terbaik di setiap tarikan.',
+    tagline_en: 'More than just fishing, your reliable partner on every strike.',
     hero_title: 'Jasa Temanin Mancing & Rental Alat Pertama di Padang',
-    hero_title_en: 'First Fishing Buddy & Tackle Rental in Padang',
-    hero_subtitle: 'Nikmati serunya mancing di Padang tanpa ribet bawa alat. Dari bimbingan pemula dari nol hingga carter perahu wisata keliling pulau.',
-    hero_subtitle_en: 'Enjoy easy fishing trips and island boat charters in Padang. Friendly local guides for beginners, complete gear, and authentic coastal trips.',
+    hero_title_en: 'First Fishing Companion & Tackle Rental in Padang',
+    hero_subtitle: 'Nikmati serunya mancing di pesisir Padang dan pulau-pulau eksotis tanpa ribet bawa alat. Dari bimbingan pemula hingga carter perahu wisata keliling pulau.',
+    hero_subtitle_en: 'Enjoy easy coastal and island fishing trips in Padang. Friendly local guides for beginners, complete tackle, and authentic island boat charters.',
     whatsapp_number: '6289635655962',
     operating_hours: 'Setiap Hari 07:00 - 23:30 WIB',
     address: 'Jl. Kp. Batu, Jembatan Sitinurbaya, Padang',
@@ -44,8 +47,8 @@ export default async function HomePage() {
     google_maps_iframe: null,
     instagram_username: 'temanmancingpadang',
     tiktok_username: 'temanmancingpadang',
-    announcement_banner: 'Buka setiap hari 07:00 - 23:30 WIB | Diskon khusus mahasiswa/i yang pusing skripsi!',
-    announcement_banner_en: 'Open daily 07:00 - 23:30 WIB | Special discounts for university students!',
+    announcement_banner: 'Buka setiap hari 07:00 - 23:30 WIB | Melayani pemula, rombongan, & wisatawan!',
+    announcement_banner_en: 'Open daily 07:00 - 23:30 WIB | Serving beginners, groups, & visiting tourists!',
     is_announcement_active: true,
     rental_terms: [
       'Setiap kerusakan atau kehilangan adalah tanggung jawab penyewa.',
@@ -64,7 +67,7 @@ export default async function HomePage() {
   const boatPackages = packages.filter((p) => p.category === 'boat-wisata');
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-[#02161e]">
       <AnnouncementBar
         bannerId={settings.announcement_banner}
         bannerEn={settings.announcement_banner_en}
@@ -86,7 +89,13 @@ export default async function HomePage() {
           whatsappNumber={settings.whatsapp_number}
         />
 
-        <StoryHighlights />
+        <TargetSpecies />
+
+        <TrustedExperts whatsappNumber={settings.whatsapp_number} />
+
+        <WhoItsFor whatsappNumber={settings.whatsapp_number} />
+
+        <TheExperience />
 
         <ServiceTabs
           packages={packages}

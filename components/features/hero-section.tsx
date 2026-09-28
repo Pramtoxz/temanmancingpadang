@@ -3,13 +3,9 @@
 import * as React from 'react';
 import { useLanguage } from '@/components/providers/language-provider';
 import {
-  IconFish,
   IconBrandWhatsapp,
-  IconSparkles,
-  IconCompass,
-  IconLifebuoy,
-  IconUsers,
-  IconArrowDown,
+  IconBrandInstagram,
+  IconArrowRight,
 } from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
 import { sanitizePhoneNumber } from '@/lib/whatsapp';
@@ -29,7 +25,7 @@ export function HeroSection({
   heroSubtitleEn,
   whatsappNumber,
 }: HeroSectionProps) {
-  const { language, dict } = useLanguage();
+  const { language } = useLanguage();
 
   const title =
     language === 'en' && heroTitleEn ? heroTitleEn : heroTitleId;
@@ -39,109 +35,71 @@ export function HeroSection({
   const sanitizedWa = sanitizePhoneNumber(whatsappNumber);
   const waUrl = `https://wa.me/${sanitizedWa}?text=${encodeURIComponent(
     language === 'en'
-      ? 'Hello Teman Mancing Padang, I would like to consult and ask about your fishing packages and schedule.'
-      : 'Halo Teman Mancing Padang, saya mau tanya-tanya paket mancing dan jadwal yang tersedia.'
+      ? 'Hello Teman Mancing Padang, I would like to book a fishing charter / trip schedule.'
+      : 'Halo Teman Mancing Padang, saya ingin konsultasi dan booking jadwal trip mancing.'
   )}`;
 
   return (
-    <section className="relative overflow-hidden py-16 sm:py-24 lg:py-28">
+    <section className="relative min-h-[580px] lg:min-h-[680px] flex items-center overflow-hidden bg-[#02161e] text-white">
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero-bg.jpg"
-          alt="Pantai Padang dan Perahu Wisata"
+          src="/images/hero-boat.jpg"
+          alt="Padang Island Fishing Boat"
           className="h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/88 to-slate-50 dark:from-slate-950/95 dark:via-slate-950/90 dark:to-slate-950 backdrop-blur-[1.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#02161e]/95 via-[#02161e]/50 to-[#02161e]/90 hidden lg:block" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#02161e]/90 via-[#02161e]/75 to-[#02161e]/95 lg:hidden" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-sky-200/80 bg-sky-100/70 px-4 py-1.5 text-xs sm:text-sm font-bold text-sky-900 shadow-sm backdrop-blur-sm dark:border-sky-800 dark:bg-sky-950/80 dark:text-sky-300">
-            <IconSparkles size={16} className="text-amber-500 shrink-0" />
-            <span>{dict.hero.badge}</span>
-            <span className="hidden sm:inline text-sky-400">•</span>
-            <span className="hidden sm:inline font-semibold text-sky-700 dark:text-sky-400">
-              {dict.hero.subbadge}
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-1 hidden lg:flex flex-col items-center gap-4">
+            <a
+              href="https://instagram.com/temanmancingpadang"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-cyan-500/30 bg-[#062a36]/60 text-cyan-200 transition-all hover:scale-110 hover:border-[#00d2df] hover:text-[#00d2df]"
+              aria-label="Instagram"
+            >
+              <IconBrandInstagram size={18} />
+            </a>
+            <a
+              href={waUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-cyan-500/30 bg-[#062a36]/60 text-cyan-200 transition-all hover:scale-110 hover:border-[#00d2df] hover:text-[#00d2df]"
+              aria-label="WhatsApp"
+            >
+              <IconBrandWhatsapp size={18} />
+            </a>
+            <div className="h-16 w-[1px] bg-gradient-to-b from-cyan-500/40 to-transparent" />
+          </div>
+
+          <div className="lg:col-span-6 flex flex-col items-start">
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#00d2df] mb-3">
+              {language === 'en' ? 'Padang Coastal & Island Waters' : 'Pesisir Padang & Pulau Sirandah'}
             </span>
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1] mb-4">
+              {title}
+            </h1>
+
+            <p className="text-sm font-semibold tracking-wide text-cyan-200/80 uppercase">
+              {language === 'en' ? 'Deliver The Real Strike & Experience' : 'Pengalaman Nyata • Sahabat Terbaik di Setiap Tarikan'}
+            </p>
           </div>
 
-          <h1 className="max-w-4xl text-3xl font-black tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white leading-[1.15]">
-            {title}
-          </h1>
+          <div className="lg:col-span-5 flex flex-col items-start lg:items-end text-left lg:text-right space-y-5 lg:pl-8">
+            <p className="text-sm sm:text-base text-cyan-100/85 leading-relaxed max-w-md">
+              {subtitle}
+            </p>
 
-          <p className="mt-6 max-w-2xl text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-            {subtitle}
-          </p>
-
-          <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            <Button
-              asChild
-              size="lg"
-              variant="ocean"
-              className="w-full sm:w-auto text-base gap-2.5 shadow-lg shadow-sky-600/25"
-            >
-              <a href="#layanan">
-                <IconFish size={20} stroke={2} />
-                <span>{dict.hero.explorePackages}</span>
-                <IconArrowDown size={18} stroke={2} />
+            <Button asChild variant="cyan" size="pill" className="shadow-[0_0_30px_rgba(0,210,223,0.35)]">
+              <a href={waUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
+                <span>{language === 'en' ? 'Book Your Trip' : 'Booking Jadwal Trip'}</span>
+                <IconArrowRight size={17} stroke={2.5} />
               </a>
             </Button>
-
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="w-full sm:w-auto text-base gap-2.5 border-slate-300 dark:border-slate-700"
-            >
-              <a href={waUrl} target="_blank" rel="noopener noreferrer">
-                <IconBrandWhatsapp size={20} stroke={2} className="text-emerald-500" />
-                <span>{dict.hero.consultation}</span>
-              </a>
-            </Button>
-          </div>
-
-          <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 w-full max-w-3xl">
-            <div className="flex items-center justify-center sm:justify-start gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-400">
-                <IconUsers size={20} stroke={2} />
-              </div>
-              <div className="text-left">
-                <span className="block text-xs font-bold text-slate-900 dark:text-white">
-                  {dict.hero.statGuide}
-                </span>
-                <span className="block text-xs text-slate-500 dark:text-slate-400">
-                  Sabarlah diajari dari nol
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center sm:justify-start gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-400">
-                <IconCompass size={20} stroke={2} />
-              </div>
-              <div className="text-left">
-                <span className="block text-xs font-bold text-slate-900 dark:text-white">
-                  {dict.hero.statGear}
-                </span>
-                <span className="block text-xs text-slate-500 dark:text-slate-400">
-                  Free pakai alat & umpan
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center sm:justify-start gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400">
-                <IconLifebuoy size={20} stroke={2} />
-              </div>
-              <div className="text-left">
-                <span className="block text-xs font-bold text-slate-900 dark:text-white">
-                  {dict.hero.statBoat}
-                </span>
-                <span className="block text-xs text-slate-500 dark:text-slate-400">
-                  Life jacket & kapten resmi
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -10,11 +10,8 @@ import {
   IconClock,
   IconBrandWhatsapp,
   IconStar,
-  IconMapPin,
 } from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
 
 interface PackageCardProps {
   pkg: Package;
@@ -47,95 +44,94 @@ export function PackageCard({ pkg, whatsappNumber }: PackageCardProps) {
       : pkg.slug.includes('mandeh')
       ? '/images/mandeh.jpg'
       : pkg.slug.includes('malam')
-      ? '/images/feed-temanin.png'
-      : '/images/feed-edukasi.png');
+      ? '/images/strike-action.jpg'
+      : '/images/couple-date.jpg');
 
   return (
-    <Card className="flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-sky-300 dark:hover:border-sky-800">
-      <div className="relative h-44 w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
-        <img
-          src={thumbnail}
-          alt={title}
-          className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
-          {pkg.is_popular ? (
-            <Badge variant="popular" className="gap-1 shadow-sm">
-              <IconStar size={12} className="fill-amber-500 text-amber-500" />
+    <div className="flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan-500/20 bg-[#062a36]/80 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_35px_rgba(0,210,223,0.18)]">
+      <div>
+        <div className="relative h-48 w-full overflow-hidden bg-[#02161e]">
+          <img
+            src={thumbnail}
+            alt={title}
+            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#062a36] via-transparent to-transparent opacity-80" />
+
+          {pkg.is_popular && (
+            <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-[#00d2df] px-3 py-1 text-xs font-bold text-[#02161e] shadow-md">
+              <IconStar size={13} className="fill-[#02161e]" />
               <span>{dict.packageCard.popularBadge}</span>
-            </Badge>
-          ) : (
-            <Badge variant="secondary" className="shadow-sm">
-              <IconMapPin size={12} />
-              <span>Muaro Batang Arau</span>
-            </Badge>
+            </div>
           )}
 
           {pkg.duration_hours && (
-            <span className="flex items-center gap-1 text-xs font-bold text-white drop-shadow">
-              <IconClock size={14} />
-              {pkg.duration_hours} {dict.packageCard.hours}
-            </span>
+            <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-[#02161e]/85 backdrop-blur-md px-3 py-1 text-xs font-semibold text-cyan-200 border border-cyan-500/30">
+              <IconClock size={13} className="text-[#00d2df]" />
+              <span>{pkg.duration_hours} {dict.packageCard.hours}</span>
+            </div>
           )}
+        </div>
+
+        <div className="p-6">
+          <h3 className="text-lg font-bold text-white mb-2 leading-snug">
+            {title}
+          </h3>
+
+          <p className="text-xs sm:text-sm text-cyan-100/75 leading-relaxed line-clamp-2 mb-5">
+            {description}
+          </p>
+
+          <div className="mb-6 rounded-2xl bg-[#02161e]/70 border border-cyan-500/20 p-4">
+            <span className="text-[11px] font-semibold text-cyan-300/80 block uppercase tracking-wider mb-1">
+              {dict.packageCard.startingFrom}
+            </span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl font-black text-[#00d2df]">
+                {formatRupiah(pkg.price)}
+              </span>
+              {priceNote && (
+                <span className="text-xs text-cyan-200/70">
+                  / {priceNote}
+                </span>
+              )}
+            </div>
+          </div>
+
+          <div className="space-y-2.5">
+            <span className="text-xs font-bold uppercase tracking-wider text-cyan-200 block">
+              {dict.packageCard.includesTitle}:
+            </span>
+            <ul className="space-y-2">
+              {includes.map((item, idx) => (
+                <li
+                  key={idx}
+                  className="flex items-start gap-2.5 text-xs text-cyan-100/80"
+                >
+                  <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-cyan-500/20 text-[#00d2df]">
+                    <IconCheck size={11} stroke={3} />
+                  </div>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
-      <CardHeader className="space-y-3 pb-3 pt-5">
-        <div>
-          <h3 className="text-xl font-extrabold text-slate-900 dark:text-white leading-tight">
-            {title}
-          </h3>
-          {description && (
-            <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              {description}
-            </p>
-          )}
-        </div>
-
-        <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-          <div className="flex items-baseline gap-1">
-            <span className="text-2xl font-black text-sky-600 dark:text-sky-400">
-              {formatRupiah(pkg.price)}
-            </span>
-            {priceNote && (
-              <span className="text-xs text-slate-500 dark:text-slate-400">
-                / {priceNote}
-              </span>
-            )}
-          </div>
-        </div>
-      </CardHeader>
-
-      <CardContent className="space-y-4 pb-6">
-        <div>
-          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2.5">
-            {dict.packageCard.includesTitle}
-          </h4>
-          <ul className="space-y-2">
-            {includes.map((item, index) => (
-              <li
-                key={index}
-                className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300"
-              >
-                <div className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400 mt-0.5">
-                  <IconCheck size={12} stroke={3} />
-                </div>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </CardContent>
-
-      <CardFooter className="pt-0">
-        <Button asChild variant="ocean" className="w-full gap-2 font-bold py-2.5">
-          <a href={waUrl} target="_blank" rel="noopener noreferrer">
-            <IconBrandWhatsapp size={18} stroke={2} />
+      <div className="p-6 pt-0">
+        <Button asChild variant="cyan" size="pill" className="w-full justify-center">
+          <a
+            href={waUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gap-2 font-bold"
+          >
+            <IconBrandWhatsapp size={18} stroke={2.5} />
             <span>{dict.packageCard.bookViaWa}</span>
           </a>
         </Button>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }
