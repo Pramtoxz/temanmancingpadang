@@ -64,7 +64,7 @@ export function TrustedExperts({ whatsappNumber }: TrustedExpertsProps) {
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-3xl overflow-hidden border-2 border-cyan-500/25 bg-[#062a36] shadow-2xl">
               <img
-                src="/images/local-guide.jpg"
+                src="/images/local-guide.webp"
                 alt="Guide Lokal Teman Mancing Padang"
                 className="w-full h-[380px] sm:h-[450px] object-cover object-center"
               />

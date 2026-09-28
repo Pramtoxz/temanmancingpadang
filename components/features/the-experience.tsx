@@ -13,7 +13,7 @@ export function TheExperience() {
       titleEn: 'Tackle Rigging & Fresh Bait Setup',
       descId: 'Pemandu kami merakit joran dan memasangkan umpan segar sehingga Anda dapat langsung melempar senar tanpa repot.',
       descEn: 'Our guide calibrates the rods, ties reliable rigs, and hooks the bait so you can start fishing right away.',
-      image: '/images/tackle-prep.jpg',
+      image: '/images/tackle-prep.webp',
     },
     {
       step: '02',
@@ -21,7 +21,7 @@ export function TheExperience() {
       titleEn: 'Cruising to Pristine Island Spots',
       descId: 'Melaju santai di atas perahu motor pulau khas Padang melintasi perairan toska Pulau Sirandah dan Teluk Mandeh.',
       descEn: 'Relax on a comfortable authentic covered island boat while cruising across emerald tropical reef waters.',
-      image: '/images/boat-wisata-padang.jpg',
+      image: '/images/boat-wisata-padang.webp',
     },
     {
       step: '03',
@@ -29,7 +29,7 @@ export function TheExperience() {
       titleEn: 'The Thrill of Strike & Photo Memories',
       descId: 'Nikmati deg-degan saat joran disentak ikan karang dan kami abadikan foto kemenangan Anda di atas perahu.',
       descEn: 'Experience the adrenaline of a fighting fish and let our guide capture crisp aesthetic photo memories for you.',
-      image: '/images/strike-action.jpg',
+      image: '/images/strike-action.webp',
     },
   ];
 

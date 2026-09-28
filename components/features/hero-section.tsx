@@ -43,7 +43,7 @@ export function HeroSection({
     <section className="relative min-h-[580px] lg:min-h-[680px] flex items-center overflow-hidden bg-[#02161e] text-white">
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero-boat.jpg"
+          src="/images/hero-boat.webp"
           alt="Padang Island Fishing Boat"
           className="h-full w-full object-cover object-center"
         />

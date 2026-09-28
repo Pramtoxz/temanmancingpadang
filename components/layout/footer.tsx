@@ -44,7 +44,7 @@ export function Footer({
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
           <div className="md:col-span-5 space-y-4">
             <img
-              src="/images/logo-lockup.png"
+              src="/images/logo-lockup.webp"
               alt={businessName}
               className="h-10 w-auto object-contain drop-shadow-[0_2px_12px_rgba(0,210,223,0.3)]"
             />

@@ -25,21 +25,21 @@ export function WhoItsFor({ whatsappNumber }: WhoItsForProps) {
       titleEn: 'Beginners & Solo Travelers',
       descId: 'Ingin rekreasi santai menikmati suasana pesisir tanpa ribet beli alat dan tanpa repot pasang umpan.',
       descEn: 'Enjoy easy outdoor coastal relaxation without having to buy expensive gear or handle messy live baits.',
-      image: '/images/card-compass.jpg',
+      image: '/images/card-compass.webp',
     },
     {
       titleId: 'Keluarga & Rombongan Santai',
       titleEn: 'Families & Leisure Groups',
       descId: 'Petualangan berlayar ke pulau-pulau eksotis (Sirandah, Pasumpahan, Mandeh) dengan perahu aman dan berpeneduh.',
       descEn: 'Memorable boat trips to exotic tropical islands with covered comfortable island boats and scenic beach stops.',
-      image: '/images/card-boat.jpg',
+      image: '/images/card-boat.webp',
     },
     {
       titleId: 'Angler & Mancing Mania',
       titleEn: 'Visiting Anglers & Enthusiasts',
       descId: 'Mencari spot karang dan tubiran potensial untuk merasakan sensasi tarikan ikan predator laut dalam Padang.',
       descEn: 'Targeting reef drop-offs and productive coral zones for thrilling strikes and deep-water action.',
-      image: '/images/card-anchor.jpg',
+      image: '/images/card-anchor.webp',
     },
   ];
 

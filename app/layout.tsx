@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/hero-bg.jpg',
+        url: '/images/hero-boat.webp',
         width: 1200,
         height: 630,
         alt: 'Teman Mancing Padang',
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     title: 'Teman Mancing Padang | Asisten Mancing Andalan Kamu',
     description:
       'Jasa temanin mancing pemula, rental piranti alat pancing, dan carter perahu wisata pulau di Padang.',
-    images: ['/images/hero-bg.jpg'],
+    images: ['/images/hero-boat.webp'],
   },
 };
 
@@ -68,8 +68,8 @@ const jsonLd = {
   name: 'Teman Mancing Padang',
   description:
     'Jasa temanin mancing pemula, rental piranti alat pancing lengkap, dan carter perahu wisata pulau di Padang, Sumatera Barat.',
-  image: 'https://temanmancingpadang.web.id/images/hero-bg.jpg',
-  logo: 'https://temanmancingpadang.web.id/images/logo.png',
+  image: 'https://temanmancingpadang.web.id/images/hero-boat.webp',
+  logo: 'https://temanmancingpadang.web.id/images/logo.webp',
   url: 'https://temanmancingpadang.web.id',
   telephone: '+6289635655962',
   priceRange: 'Rp 10.000 - Rp 750.000',

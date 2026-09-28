@@ -40,12 +40,12 @@ export function PackageCard({ pkg, whatsappNumber }: PackageCardProps) {
   const thumbnail =
     pkg.image_url ||
     (pkg.slug.includes('sirandah')
-      ? '/images/sirandah.jpg'
+      ? '/images/sirandah.webp'
       : pkg.slug.includes('mandeh')
-      ? '/images/mandeh.jpg'
+      ? '/images/mandeh.webp'
       : pkg.slug.includes('malam')
-      ? '/images/strike-action.jpg'
-      : '/images/couple-date.jpg');
+      ? '/images/strike-action.webp'
+      : '/images/couple-date.webp');
 
   return (
     <div className="flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan-500/20 bg-[#062a36]/80 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_35px_rgba(0,210,223,0.18)]">

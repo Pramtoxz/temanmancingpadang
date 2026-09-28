@@ -1,6 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
 import { Package, RentalItem, SiteSettings } from '@/types';
-import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { Navbar } from '@/components/layout/navbar';
 import { HeroSection } from '@/components/features/hero-section';
 import { TargetSpecies } from '@/components/features/target-species';
@@ -47,9 +46,9 @@ export default async function HomePage() {
     google_maps_iframe: null,
     instagram_username: 'temanmancingpadang',
     tiktok_username: 'temanmancingpadang',
-    announcement_banner: 'Buka setiap hari 07:00 - 23:30 WIB | Melayani pemula, rombongan, & wisatawan!',
-    announcement_banner_en: 'Open daily 07:00 - 23:30 WIB | Serving beginners, groups, & visiting tourists!',
-    is_announcement_active: true,
+    announcement_banner: null,
+    announcement_banner_en: null,
+    is_announcement_active: false,
     rental_terms: [
       'Setiap kerusakan atau kehilangan adalah tanggung jawab penyewa.',
       'Wajib deposit jaminan untuk mencegah kehilangan barang.',
@@ -68,12 +67,6 @@ export default async function HomePage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-[#02161e]">
-      <AnnouncementBar
-        bannerId={settings.announcement_banner}
-        bannerEn={settings.announcement_banner_en}
-        isActive={settings.is_announcement_active}
-      />
-
       <Navbar
         businessName={settings.business_name}
         whatsappNumber={settings.whatsapp_number}
@@ -81,13 +74,15 @@ export default async function HomePage() {
       />
 
       <main className="flex-1">
-        <HeroSection
-          heroTitleId={settings.hero_title}
-          heroTitleEn={settings.hero_title_en}
-          heroSubtitleId={settings.hero_subtitle}
-          heroSubtitleEn={settings.hero_subtitle_en}
-          whatsappNumber={settings.whatsapp_number}
-        />
+        <div id="home">
+          <HeroSection
+            heroTitleId={settings.hero_title}
+            heroTitleEn={settings.hero_title_en}
+            heroSubtitleId={settings.hero_subtitle}
+            heroSubtitleEn={settings.hero_subtitle_en}
+            whatsappNumber={settings.whatsapp_number}
+          />
+        </div>
 
         <TargetSpecies />
 

@@ -23,7 +23,7 @@ export function TargetSpecies() {
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="group relative overflow-hidden rounded-2xl border border-cyan-500/20 bg-[#062a36] shadow-lg">
               <img
-                src="/images/trophy-catch.jpg"
+                src="/images/local-guide.webp"
                 alt="Tangkapan Kakap Merah Padang"
                 className="h-64 sm:h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -40,7 +40,7 @@ export function TargetSpecies() {
 
             <div className="group relative overflow-hidden rounded-2xl border border-cyan-500/20 bg-[#062a36] shadow-lg">
               <img
-                src="/images/strike-action.jpg"
+                src="/images/strike-action.webp"
                 alt="Strike Kuwe Giant Trevally Padang"
                 className="h-64 sm:h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />

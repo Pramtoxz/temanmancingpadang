@@ -63,10 +63,10 @@ export function BoatCharter({
             const thumbnail =
               pkg.image_url ||
               (pkg.slug.includes('sirandah')
-                ? '/images/sirandah.jpg'
+                ? '/images/sirandah.webp'
                 : pkg.slug.includes('mandeh')
-                ? '/images/mandeh.jpg'
-                : '/images/boat-wisata-padang.jpg');
+                ? '/images/mandeh.webp'
+                : '/images/boat-wisata-padang.webp');
 
             return (
               <div
