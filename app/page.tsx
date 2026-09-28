@@ -53,7 +53,7 @@ export default async function HomePage() {
       'Setiap kerusakan atau kehilangan adalah tanggung jawab penyewa.',
       'Wajib deposit jaminan untuk mencegah kehilangan barang.',
       'Syarat wajib KTP, SIM, atau kartu identitas lainnya.',
-      'Diskon spesial untuk mahasiswa/i yang lagi pusing skripsi!',
+      'Layanan sewa siap pakai untuk pemula dan rombongan.',
     ],
     boat_terms: [
       'Wajib menggunakan pelampung keselamatan (Life Jacket) selama penyeberangan.',
